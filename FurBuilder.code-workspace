@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"extensions": {
+		"recommendations": [
+			"avaloniateam.vscode-avalonia",
+			"ms-dotnettools.csdevkit"
+		]
+	}
+}
