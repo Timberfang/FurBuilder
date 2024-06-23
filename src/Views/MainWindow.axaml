@@ -3,11 +3,13 @@
         xmlns:vm="using:FurBuilder.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1280" d:DesignHeight="720"
         x:Class="FurBuilder.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="FurBuilder">
+        Title="FurBuilder"
+		MinWidth="400"
+		MinHeight="600">
 
     <Design.DataContext>
         <!-- This only sets the DataContext for the previewer in an IDE,
@@ -15,6 +17,64 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+	<DockPanel>
+		<Rectangle
+			DockPanel.Dock="Top"
+			Height="75"
+			Fill="Gray"/>
+
+		<Rectangle
+			DockPanel.Dock="Bottom"
+			Height="75"
+			Fill="Gray"/>
+		
+		<Border
+			ClipToBounds="True">
+			<Grid
+				ShowGridLines="True"
+				ColumnDefinitions="400, *">
+				<StackPanel
+					Grid.Column="0"
+					Margin="50"
+					Spacing="20">
+					<Rectangle
+						Name="ProfilePicture"
+						Width="200"
+						Height="200"
+						Fill="Lavender"/>
+					<TextBox
+						Margin="20, 0"
+						FontSize="18"
+						FontWeight="Bold"
+						TextAlignment="Center"
+						TextWrapping="Wrap"
+						Watermark="Name"
+						HorizontalAlignment="Center"
+						Width="250"/>
+					<Rectangle
+						Height="4"
+						Width="300"
+						Fill="Gray"/>
+					<TextBox
+						Margin="20, 0"
+						FontSize="16"
+						FontStyle="Italic"
+						TextAlignment="Center"
+						TextWrapping="Wrap"
+						Watermark="Species"
+						HorizontalAlignment="Center"
+						Width="175"/>
+				</StackPanel>
+
+				<Grid
+					Grid.Column="1"
+					ShowGridLines="True"
+					ColumnDefinitions="*, *"
+					RowDefinitions="Auto, Auto, Auto"
+					Margin="50">
+				</Grid>
+			</Grid>
+		</Border>
+	</DockPanel>
 
 </Window>
