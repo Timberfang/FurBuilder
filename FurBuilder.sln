@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FurBuilder", "FurBuilder.csproj", "{7D5673C0-3F62-4CA2-8107-ED26BA4DE8BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D5673C0-3F62-4CA2-8107-ED26BA4DE8BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D5673C0-3F62-4CA2-8107-ED26BA4DE8BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D5673C0-3F62-4CA2-8107-ED26BA4DE8BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D5673C0-3F62-4CA2-8107-ED26BA4DE8BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {378323BD-30CA-4C9F-A0BA-5FD7DCFA6EA4}
+	EndGlobalSection
+EndGlobal
