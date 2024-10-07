@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            // TODO: Once GUI added, change -1 to 0 here.
+            if (args.Length > -1) { CLI.ConsoleMenu.ShowOptions(); }
         }
     }
 }
