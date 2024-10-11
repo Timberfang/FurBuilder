@@ -64,6 +64,12 @@ namespace FurBuilder.CLI.Commands
             WorkingCharacter.Personality = DataEntry.NewAttributeList("Personality Trait");
             // Background logic here - use Radline
             // Notes logic here
+
+            string OutputPath = Path.Join(Environment.CurrentDirectory, "Test.json");
+            File.WriteAllText(OutputPath, WorkingCharacter.ToJson());
+            Console.WriteLine();
+            Console.Write("Character file written at: ");
+            Console.Write(OutputPath);
         }
     }
 }

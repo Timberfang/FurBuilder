@@ -1,4 +1,6 @@
-﻿namespace FurBuilder.Data
+﻿using System.Text.Json;
+
+namespace FurBuilder.Data
 {
     public class Character : ICharacter
     {
@@ -47,7 +49,7 @@
         }
         public string ToJson()
         {
-            throw new NotImplementedException();
+            return JsonSerializer.Serialize(this, CharacterJsonContext.Default.ICharacter);
         }
 
         public string ToMarkdown()
