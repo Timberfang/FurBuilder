@@ -23,7 +23,7 @@
 
         public Character(string Owner, string Name, string Species, IList<string>? Tags = null, string ProfileImage = "", string Gender = "", int Age = 0)
         {
-            Id = new();
+            Id = Guid.NewGuid();
             this.Owner = Owner;
             CreatedAt = DateTime.Now;
             this.Tags = Tags ?? [];
