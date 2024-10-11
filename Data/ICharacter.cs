@@ -5,7 +5,7 @@
         // Metadata
         Guid Id { get; }
         string Owner { get; set; }
-        DateTime CreatedAt { get; set; }
+        DateTime CreatedAt { get; }
         IList<string> Tags { get; set; }
 
         // Basic information
