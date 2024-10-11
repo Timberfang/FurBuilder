@@ -18,6 +18,7 @@ namespace FurBuilder.CLI
             {
                 case CreateCommand:
                     // Create command here
+                    Commands.Create.NewCharacter();
                     break;
                 case EditCommand:
                     // Edit command here
