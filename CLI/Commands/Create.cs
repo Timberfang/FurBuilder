@@ -50,11 +50,18 @@ namespace FurBuilder.CLI.Commands
                     WorkingAppearance.Build = AnsiConsole.Prompt(new TextPrompt<string>("What build does your character have? For example, 'muscular', 'average', 'athletic', or 'chubby':"));
                     WorkingAppearance.Height = AnsiConsole.Prompt(new TextPrompt<float>("What's your character's height, in centimeters?"));
                     WorkingAppearance.Weight = AnsiConsole.Prompt(new TextPrompt<float>("What's your character's weight, in kilograms?"));
-                    // Physical features logic here
+                    Console.WriteLine();
+                    AnsiConsole.MarkupLine($"[blue]Let's give {WorkingCharacter.Name} some physical features![/]");
+                    Console.WriteLine();
+                    WorkingAppearance.PhysicalFeatures = DataEntry.NewAttributeList("Physical Feature");
+                    WorkingCharacter.Forms.Add(WorkingAppearance);
                 }
             }
 
-            // Personality traits logic here
+            Console.WriteLine();
+            AnsiConsole.MarkupLine($"[blue]Let's give {WorkingCharacter.Name} some personality traits![/]");
+            Console.WriteLine();
+            WorkingCharacter.Personality = DataEntry.NewAttributeList("Personality Trait");
             // Background logic here - use Radline
             // Notes logic here
         }
