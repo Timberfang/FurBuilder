@@ -48,7 +48,7 @@ namespace FurBuilder.CLI.Commands
                     Appearance WorkingAppearance = new Appearance("Base");
                     WorkingAppearance.Description = AnsiConsole.Prompt(new TextPrompt<string>("Please briefly describe your character's appearance, in one to three sentences:"));
                     // Colors logic here
-                    WorkingAppearance.Description = AnsiConsole.Prompt(new TextPrompt<string>("What build does your character have? For example, 'muscular', 'average', 'athletic', or 'chubby':"));
+                    WorkingAppearance.Build = AnsiConsole.Prompt(new TextPrompt<string>("What build does your character have? For example, 'muscular', 'average', 'athletic', or 'chubby':"));
                     WorkingAppearance.Height = AnsiConsole.Prompt(new TextPrompt<float>("What's your character's height, in centimeters?"));
                     WorkingAppearance.Weight = AnsiConsole.Prompt(new TextPrompt<float>("What's your character's weight, in kilograms?"));
                     // Physical features logic here
