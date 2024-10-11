@@ -8,7 +8,7 @@ namespace FurBuilder.CLI.Commands
         public static void NewCharacter()
         {
             Console.Clear();
-            AnsiConsole.Markup("[blue]Welcome to FurBuilder![/]");
+            AnsiConsole.MarkupLine("[blue]Welcome to FurBuilder![/]");
             Console.WriteLine();
             Console.WriteLine("Let's create a character.");
 
@@ -18,8 +18,7 @@ namespace FurBuilder.CLI.Commands
 
             Character WorkingCharacter = new(OwnerInput, NameInput, SpeciesInput);
             Console.WriteLine();
-            AnsiConsole.Markup("[blue]Now we have the basics out of the way.[/]");
-            Console.WriteLine();
+            AnsiConsole.MarkupLine("[blue]Now we have the basics out of the way.[/]");
             Console.WriteLine();
             Console.WriteLine($"So your character is named '{WorkingCharacter.Name}', their species is '{WorkingCharacter.Species}', and the owner's name is '{WorkingCharacter.Owner}'.");
             Console.WriteLine($"For reference, your character's unique ID is '{WorkingCharacter.Id}'.");
