@@ -63,7 +63,12 @@ namespace FurBuilder.CLI.Commands
             Console.WriteLine();
             WorkingCharacter.Personality = DataEntry.NewAttributeList("Personality Trait");
             // Background logic here - use Radline
-            // Notes logic here
+
+            bool HasNotes = AnsiConsole.Prompt(new SelectionPrompt<string>().Title("Would you like to add any notes to your character sheet?").AddChoices(["Yes", "No"])) == "Yes";
+            if (HasNotes)
+            {
+                WorkingCharacter.Notes = AnsiConsole.Prompt(new TextPrompt<string>("Enter the notes for your character:"));
+            }
 
             while (true)
             {
