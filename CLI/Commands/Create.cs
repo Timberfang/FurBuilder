@@ -65,11 +65,27 @@ namespace FurBuilder.CLI.Commands
             // Background logic here - use Radline
             // Notes logic here
 
-            string OutputPath = Path.Join(Environment.CurrentDirectory, "Test.json");
-            File.WriteAllText(OutputPath, WorkingCharacter.ToJson());
-            Console.WriteLine();
-            Console.Write("Character file written at: ");
-            Console.Write(OutputPath);
+            while (true)
+            {
+                string FileName = AnsiConsole.Prompt(new TextPrompt<string>("What do you want to name the character sheet file? For example, 'John Doe' would output a file called 'John Doe.json'."));
+                string OutputPath = Path.Join(Environment.CurrentDirectory, $"{FileName}.json");
+
+                if (Path.Exists(OutputPath))
+                {
+                    Console.WriteLine();
+                    AnsiConsole.MarkupLine("[red]That file already exists![/] Please choose another name.");
+                    Console.WriteLine();
+                }
+                else
+                {
+                    File.WriteAllText(OutputPath, WorkingCharacter.ToJson());
+                    Console.WriteLine();
+                    Console.Write("Character file written at: ");
+                    Console.Write(OutputPath);
+                    Console.WriteLine();
+                    break;
+                }
+            }
         }
     }
 }
