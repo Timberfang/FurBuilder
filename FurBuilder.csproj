@@ -13,4 +13,12 @@
     <PackageReference Include="Spectre.Console" Version="0.49.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Timberfang\Projects\C#\FurBuilder\Data\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Timberfang\Projects\C#\FurBuilder\.editorconfig" />
+  </ItemGroup>
+
 </Project>
