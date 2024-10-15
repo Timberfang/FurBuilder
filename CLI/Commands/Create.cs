@@ -24,18 +24,16 @@ namespace FurBuilder.CLI.Commands
             Console.WriteLine($"For reference, your character's unique ID is '{WorkingCharacter.Id}'.");
             Console.WriteLine();
 
-            bool HasProfileImage = AnsiConsole.Prompt(new SelectionPrompt<string>().Title("Do you have a profile picture ready for your character? It's not necessary, so we can still proceed without it.").AddChoices(["Yes", "No"])) == "Yes";
-            if (HasProfileImage)
+            if (PromptUserYesNo("Do you have a profile picture ready for your character? It's not necessary, so we can still proceed without it."));
             {
                 // ProfileImage logic here
             }
 
-            WorkingCharacter.Gender = AnsiConsole.Prompt(new TextPrompt<string>("What's your character's gender?"));
-            WorkingCharacter.Age = AnsiConsole.Prompt(new TextPrompt<int>("How old is your character, in years?"));
+            WorkingCharacter.Gender = PromptUser<string>("What's your character's gender?");
+            WorkingCharacter.Age = PromptUser<int>("How old is your character, in years?");
 
             int NumberOfForms = 1;
-            bool IsShapeShifter = AnsiConsole.Prompt(new SelectionPrompt<string>().Title("Is your character a shapeshifter of some kind? That is, do they have more than one form?").AddChoices(["Yes", "No"])) == "Yes";
-            if (IsShapeShifter)
+            if (PromptUserYesNo("Is your character a shapeshifter of some kind? That is, do they have more than one form?"))
             {
                 // ShapeShifter logic here - get number of forms, then set number of loops for form creation
             }
@@ -44,35 +42,32 @@ namespace FurBuilder.CLI.Commands
             {
                 if (NumberOfForms == 1)
                 {
-                    Appearance WorkingAppearance = new Appearance("Base");
-                    WorkingAppearance.Description = AnsiConsole.Prompt(new TextPrompt<string>("Please briefly describe your character's appearance, in one to three sentences:"));
-                    // Colors logic here
-                    WorkingAppearance.Build = AnsiConsole.Prompt(new TextPrompt<string>("What build does your character have? For example, 'muscular', 'average', 'athletic', or 'chubby':"));
-                    WorkingAppearance.Height = AnsiConsole.Prompt(new TextPrompt<float>("What's your character's height, in centimeters?"));
-                    WorkingAppearance.Weight = AnsiConsole.Prompt(new TextPrompt<float>("What's your character's weight, in kilograms?"));
-                    Console.WriteLine();
-                    AnsiConsole.MarkupLine($"[blue]Let's give {WorkingCharacter.Name} some physical features![/]");
-                    Console.WriteLine();
-                    WorkingAppearance.PhysicalFeatures = DataEntry.NewAttributeList("Physical Feature");
-                    WorkingCharacter.Forms.Add(WorkingAppearance);
+                    WorkingCharacter.Forms.Add(new Appearance("Base")
+                    {
+                        Description = PromptUser<string>("Please briefly describe your character's appearance, in one to three sentences:"),
+                        // Colors logic here
+                        Build = PromptUser<string>("What build does your character have? For example, 'muscular', 'average', 'athletic', or 'chubby':"),
+                        Height = PromptUser<float>("What's your character's height, in centimeters?"),
+                        Weight = PromptUser<float>("What's your character's weight, in kilograms?"),
+                        PhysicalFeatures = PromptUserForList($"[blue]Let's give {WorkingCharacter.Name} some physical features![/]", "Physical Feature")
+                    });
                 }
             }
 
-            Console.WriteLine();
-            AnsiConsole.MarkupLine($"[blue]Let's give {WorkingCharacter.Name} some personality traits![/]");
-            Console.WriteLine();
-            WorkingCharacter.Personality = DataEntry.NewAttributeList("Personality Trait");
+            WorkingCharacter.Personality = PromptUserForList($"[blue]Let's give {WorkingCharacter.Name} some personality traits![/]", "Personality Trait");
+
             // Background logic here - use Radline
 
-            bool HasNotes = AnsiConsole.Prompt(new SelectionPrompt<string>().Title("Would you like to add any notes to your character sheet?").AddChoices(["Yes", "No"])) == "Yes";
-            if (HasNotes)
-            {
-                WorkingCharacter.Notes = AnsiConsole.Prompt(new TextPrompt<string>("Enter the notes for your character:"));
-            }
+            if (PromptUserYesNo("Would you like to add any notes to your character sheet?")) { WorkingCharacter.Notes = PromptUser<string>("Enter the notes for your character:"); }
 
+            SaveFile("What do you want to name the character sheet file? For example, 'John Doe' would output a file called 'John Doe.json'.", WorkingCharacter);
+        }
+
+        private static void SaveFile(string Prompt, Character Data)
+        {
             while (true)
             {
-                string FileName = AnsiConsole.Prompt(new TextPrompt<string>("What do you want to name the character sheet file? For example, 'John Doe' would output a file called 'John Doe.json'."));
+                string FileName = PromptUser<string>(Prompt);
                 string OutputPath = Path.Join(Environment.CurrentDirectory, $"{FileName}.json");
 
                 if (Path.Exists(OutputPath))
@@ -83,7 +78,7 @@ namespace FurBuilder.CLI.Commands
                 }
                 else
                 {
-                    File.WriteAllText(OutputPath, WorkingCharacter.ToJson());
+                    File.WriteAllText(OutputPath, Data.ToJson());
                     Console.WriteLine();
                     Console.Write("Character file written at: ");
                     Console.Write(OutputPath);
@@ -91,6 +86,24 @@ namespace FurBuilder.CLI.Commands
                     break;
                 }
             }
+        }
+
+        private static bool PromptUserYesNo(string Prompt)
+        {
+            return AnsiConsole.Prompt(new SelectionPrompt<string>().Title(Prompt).AddChoices(["Yes", "No"])) == "Yes";
+        }
+
+        private static IList<string> PromptUserForList(string Prompt, string AttributeLabel)
+        {
+            Console.WriteLine();
+            AnsiConsole.MarkupLine(Prompt);
+            Console.WriteLine();
+            return DataEntry.NewAttributeList(AttributeLabel);
+        }
+
+        private static Type PromptUser<Type>(string Prompt)
+        {
+            return AnsiConsole.Prompt(new TextPrompt<Type>(Prompt));
         }
     }
 }
