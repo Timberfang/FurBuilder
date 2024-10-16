@@ -2,7 +2,7 @@
 
 namespace FurBuilder.CLI
 {
-    public static class ConsoleMenu
+    public static class Menu
     {
         public static void ShowOptions()
         {
@@ -18,7 +18,7 @@ namespace FurBuilder.CLI
             {
                 case CreateCommand:
                     // Create command here
-                    Commands.Create.NewCharacter();
+                    Commands.NewCharacter();
                     break;
                 case EditCommand:
                     // Edit command here
