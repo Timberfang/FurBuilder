@@ -57,7 +57,7 @@ namespace FurBuilder.CLI
 
             WorkingCharacter.Personality = DataInput.PromptUserForList($"[blue]Let's give {WorkingCharacter.Name} some personality traits![/]", "Personality Trait");
 
-            // Background logic here - use Radline
+            WorkingCharacter.Background = DataInput.PromptUserMultiLine("Describe your character's backstory.").Result;
 
             if (DataInput.PromptUserYesNo("Would you like to add any notes to your character sheet?")) { WorkingCharacter.Notes = DataInput.PromptUser<string>("Enter the notes for your character:"); }
 

@@ -1,4 +1,5 @@
 ﻿using FurBuilder.Data;
+using RadLine;
 using Spectre.Console;
 
 namespace FurBuilder.CLI
@@ -73,6 +74,17 @@ namespace FurBuilder.CLI
         internal static Type PromptUser<Type>(string Prompt)
         {
             return AnsiConsole.Prompt(new TextPrompt<Type>(Prompt));
+        }
+
+        internal async static Task<string> PromptUserMultiLine(string Prompt)
+        {
+            LineEditor Editor = new()
+            {
+                MultiLine = true,
+                Text = Prompt + "\n\nPress SHIFT+ENTER to insert a new line, and press ENTER to submit."
+            };
+
+            return await Editor.ReadLine(CancellationToken.None) ?? "";
         }
 
         private static IDictionary<string, string> NewDictionary(string KeyLabel, string ValueLabel)
