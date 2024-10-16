@@ -74,7 +74,7 @@ namespace FurBuilder.CLI
 
             while (true)
             {
-                string UserInput = AnsiConsole.Prompt(new TextPrompt<string>($"'{Label}' Attribute:"));
+                string UserInput = PromptUser<string>($"'{Label}' Attribute:");
                 if (UserInput == "exit") { break; }
                 else { Output.Add(UserInput); }
             }
