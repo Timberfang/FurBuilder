@@ -67,6 +67,23 @@ namespace FurBuilder.CLI
             return AnsiConsole.Prompt(new TextPrompt<Type>(Prompt));
         }
 
+        private static IDictionary<string, string> NewDictionary(string KeyLabel, string ValueLabel)
+        {
+            Dictionary<string, string> Output = [];
+
+            Console.WriteLine("Enter the requested data on each line. When done, type 'exit', and press enter.");
+            while (true)
+            {
+                string Key = PromptUser<string>($"{KeyLabel}:");
+                if (Key == "exit") { break; }
+                string Value = PromptUser<string>($"{ValueLabel}");
+                if (Value == "exit") { break; }
+                Output.Add(Key, Value);
+            }
+
+            return Output;
+        }
+
         private static IList<string> NewAttributeList(string Label)
         {
             Console.WriteLine($"Enter one '{Label}' attribute at a time, and then press enter. When done, type 'exit', and press enter.");
