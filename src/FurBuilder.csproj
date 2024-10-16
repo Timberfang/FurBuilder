@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Remove="C:\Users\Timberfang\Projects\C#\FurBuilder\Data\.editorconfig" />
+    <EditorConfigFiles Remove="..\.editorconfig" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="C:\Users\Timberfang\Projects\C#\FurBuilder\.editorconfig" />
+    <None Include="..\.editorconfig" />
   </ItemGroup>
 
 </Project>
