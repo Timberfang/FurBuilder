@@ -96,7 +96,7 @@ namespace FurBuilder.CLI
             {
                 string Key = PromptUser<string>($"{KeyLabel}:");
                 if (Key == "exit") { break; }
-                string Value = PromptUser<string>($"{ValueLabel}");
+                string Value = PromptUser<string>($"{ValueLabel}:");
                 if (Value == "exit") { break; }
                 Output.Add(Key, Value);
             }
