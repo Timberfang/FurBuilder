@@ -1,23 +1,20 @@
 ﻿using FurBuilder.Data;
-using FurBuilder.CLI;
 using Spectre.Console;
+using FurBuilder.Configuration;
 
 namespace FurBuilder.CLI
 {
     internal class Commands
     {
-        public static void NewCharacter()
+        public static void NewCharacter(IAppSettings Settings)
         {
             Console.Clear();
-            AnsiConsole.MarkupLine("[blue]Welcome to FurBuilder![/]");
-            Console.WriteLine();
             Console.WriteLine("Let's create a character.");
 
-            string OwnerInput = AnsiConsole.Prompt(new TextPrompt<string>("First, who's the owner of this character? If you're the owner, just enter your name:"));
-            string NameInput = AnsiConsole.Prompt(new TextPrompt<string>("Great! How about the character's name?"));
+            string NameInput = AnsiConsole.Prompt(new TextPrompt<string>("First, what's this character's name?"));
             string SpeciesInput = AnsiConsole.Prompt(new TextPrompt<string>("Now, what species is your character?"));
 
-            Character WorkingCharacter = new(OwnerInput, NameInput, SpeciesInput);
+            Character WorkingCharacter = new(Settings.Owner.Name, NameInput, SpeciesInput);
             Console.WriteLine();
             AnsiConsole.MarkupLine("[blue]Now we have the basics out of the way.[/]");
             Console.WriteLine();

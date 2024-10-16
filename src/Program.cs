@@ -1,11 +1,14 @@
-﻿namespace FurBuilder
+﻿using FurBuilder.Configuration;
+using FurBuilder.CLI;
+
+namespace FurBuilder
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            // TODO: Once GUI added, change -1 to 0 here.
-            if (args.Length > -1) { CLI.Menu.ShowOptions(); }
+            AppSettings Settings = new();
+            if (args.Length > -1) { Startup.StartProcess(Settings); } // TODO: Once GUI added, change -1 to 0 here.
         }
     }
 }
