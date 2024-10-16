@@ -62,6 +62,14 @@ namespace FurBuilder.CLI
             return NewAttributeList(AttributeLabel);
         }
 
+        internal static IDictionary<string, string> PromptUserForDictionary(string Prompt, string KeyLabel, string AttributeLabel)
+        {
+            Console.WriteLine();
+            AnsiConsole.MarkupLine(Prompt);
+            Console.WriteLine();
+            return NewDictionary(KeyLabel, AttributeLabel);
+        }
+
         internal static Type PromptUser<Type>(string Prompt)
         {
             return AnsiConsole.Prompt(new TextPrompt<Type>(Prompt));

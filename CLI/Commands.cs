@@ -46,7 +46,7 @@ namespace FurBuilder.CLI
                     WorkingCharacter.Forms.Add(new Appearance("Base")
                     {
                         Description = DataInput.PromptUser<string>("Please briefly describe your character's appearance, in one to three sentences:"),
-                        // Colors logic here
+                        Colors = DataInput.PromptUserForDictionary("What colors does your character have? You can have as many as you want, using a 'Region: Color' structure.", "Region", "Color"),
                         Build = DataInput.PromptUser<string>("What build does your character have? For example, 'muscular', 'average', 'athletic', or 'chubby':"),
                         Height = DataInput.PromptUser<float>("What's your character's height, in centimeters?"),
                         Weight = DataInput.PromptUser<float>("What's your character's weight, in kilograms?"),
