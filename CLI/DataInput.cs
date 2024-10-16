@@ -69,7 +69,7 @@ namespace FurBuilder.CLI
 
         private static IList<string> NewAttributeList(string Label)
         {
-            Console.WriteLine($"Enter one '{Label}' attribute at a time, and then press enter. When done, Label 'exit', and press enter.");
+            Console.WriteLine($"Enter one '{Label}' attribute at a time, and then press enter. When done, type 'exit', and press enter.");
             List<string> Output = [];
 
             while (true)
