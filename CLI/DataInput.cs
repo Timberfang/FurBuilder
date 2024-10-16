@@ -59,7 +59,7 @@ namespace FurBuilder.CLI
             Console.WriteLine();
             AnsiConsole.MarkupLine(Prompt);
             Console.WriteLine();
-            return DataInput.NewAttributeList(AttributeLabel);
+            return NewAttributeList(AttributeLabel);
         }
 
         internal static Type PromptUser<Type>(string Prompt)
