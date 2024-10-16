@@ -27,7 +27,7 @@ namespace FurBuilder.CLI
 
             if (DataInput.PromptUserYesNo("Do you have a profile picture ready for your character? It's not necessary, so we can still proceed without it."))
             {
-                // ProfileImage logic here
+                WorkingCharacter.ProfileImage = DataInput.GetFilePath("Please enter the path to your profile picture file:");
             }
 
             WorkingCharacter.Gender = DataInput.PromptUser<string>("What's your character's gender?");
@@ -36,7 +36,7 @@ namespace FurBuilder.CLI
             int NumberOfForms = 1;
             if (DataInput.PromptUserYesNo("Is your character a shapeshifter of some kind? That is, do they have more than one form?"))
             {
-                // ShapeShifter logic here - get number of forms, then set number of loops for form creation
+                NumberOfForms = DataInput.PromptUser<int>("How many forms does your character have? Enter only a number:");
             }
 
             for (int i = 1; i <= NumberOfForms; i++)
