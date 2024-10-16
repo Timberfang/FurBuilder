@@ -78,11 +78,11 @@ namespace FurBuilder.CLI
 
         internal async static Task<string> PromptUserMultiLine(string Prompt)
         {
-            LineEditor Editor = new()
-            {
-                MultiLine = true,
-                Text = Prompt + "\n\nPress SHIFT+ENTER to insert a new line, and press ENTER to submit."
-            };
+            Console.WriteLine();
+            AnsiConsole.MarkupLine(Prompt);
+            AnsiConsole.MarkupLine("[blue]Press SHIFT+ENTER to insert a new line, and press ENTER to submit.[/]");
+            Console.WriteLine();
+            LineEditor Editor = new() { MultiLine = true };
 
             return await Editor.ReadLine(CancellationToken.None) ?? "";
         }
