@@ -15,6 +15,11 @@ namespace FurBuilder.CLI
             WorkingCharacter = SetAttributes(WorkingCharacter);
         }
 
+        public static void EditCharacter(IAppSettings Settings)
+        {
+            // TODO: Add editing logic; List all character files (json format), get name without suffix, pick one, deserialize to ICharacter, modify with SetAttributes.
+        }
+
         private static Character SetAttributes(Character WorkingCharacter)
         {
             // TODO: Find a better way to handle this.
