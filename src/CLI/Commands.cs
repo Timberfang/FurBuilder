@@ -12,10 +12,10 @@ namespace FurBuilder.CLI
             Console.WriteLine("Let's create a character.");
 
             Character WorkingCharacter = new Character(Settings.Owner.Name);
-            WorkingCharacter = ListAttributes(WorkingCharacter);
+            WorkingCharacter = SetAttributes(WorkingCharacter);
         }
 
-        private static Character ListAttributes(Character WorkingCharacter)
+        private static Character SetAttributes(Character WorkingCharacter)
         {
             // TODO: Find a better way to handle this.
             Console.WriteLine("Your character's appearance is stored under 'forms'.");
