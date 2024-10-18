@@ -102,7 +102,7 @@ namespace FurBuilder.CLI
                     {
                         Description = DataInput.PromptUser<string>("Briefly describe your character's appearance, in one to three sentences:"),
                         Colors = DataInput.PromptUserForDictionary("What colors does your character have? You can have as many as you want, using a 'Region: Color' structure.", "Region", "Color"),
-                        Build = DataInput.PromptUser<string>("What build does your character have? For example, 'muscular', 'average', 'athletic', or 'chubby':"),
+                        Build = DataInput.PromptUser<string>("What build does your character have? For example, 'Muscular', 'Average', 'Athletic', or 'Chubby':"),
                         Height = DataInput.PromptUser<float>("What's your character's height, in centimeters?"),
                         Weight = DataInput.PromptUser<float>("What's your character's weight, in kilograms?"),
                         PhysicalFeatures = DataInput.PromptUserForList($"[blue]Let's give your character some physical features![/]", "Physical Feature")
@@ -115,7 +115,7 @@ namespace FurBuilder.CLI
                     {
                         Description = DataInput.PromptUser<string>($"Briefly describe your character's appearance in their '{FormName}' form, in one to three sentences:"),
                         Colors = DataInput.PromptUserForDictionary("What colors does this form of your character have? You can have as many as you want, using a 'Region: Color' structure.", "Region", "Color"),
-                        Build = DataInput.PromptUser<string>("What build does your character have in this form? For example, 'muscular', 'average', 'athletic', or 'chubby':"),
+                        Build = DataInput.PromptUser<string>("What build does your character have in this form? For example, 'Muscular', 'Average', 'Athletic', or 'Chubby':"),
                         Height = DataInput.PromptUser<float>("What's your character's height in this form, in centimeters?"),
                         Weight = DataInput.PromptUser<float>("What's your character's weight in this form, in kilograms?"),
                         PhysicalFeatures = DataInput.PromptUserForList($"[blue]Let's give your character some physical features for their {FormName} form![/]", "Physical Feature")
