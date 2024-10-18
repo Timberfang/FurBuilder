@@ -1,4 +1,6 @@
-﻿namespace FurBuilder.Data
+﻿using System.Text.Json.Serialization;
+
+namespace FurBuilder.Data
 {
     public interface ICharacter
     {
@@ -7,6 +9,8 @@
         string Owner { get; set; }
         DateTime CreatedAt { get; }
         IList<string> Tags { get; set; }
+        [JsonIgnore]
+        ConfigurableAttribute[] ConfigurableAttributes { get; }
 
         // Basic information
         string ProfileImage { get; set; }

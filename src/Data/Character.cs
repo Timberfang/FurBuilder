@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace FurBuilder.Data
 {
@@ -9,6 +10,28 @@ namespace FurBuilder.Data
         public string Owner { get; set; }
         public DateTime CreatedAt { get; }
         public IList<string> Tags { get; set; }
+
+        // (Arbitrary) list of configurable attributes; Used for character creation & editing. Only include properties related to the *character*, not metadata.
+        [JsonIgnore]
+        public ConfigurableAttribute[] ConfigurableAttributes
+        {
+            get
+            {
+                return [
+                    // Testing length is more performant than string comparison. See https://stackoverflow.com/questions/7872633/most-performant-way-of-checking-empty-strings-in-c-sharp
+                    // Don't need String.IsNullOrEmpty(), since the constructor ensures that these are *never* null.
+                    new("Profile Image", ProfileImage.Length > 0),
+                    new("Name", Name.Length > 0),
+                    new("Species", Species.Length > 0),
+                    new("Gender", Gender.Length > 0),
+                    new("Age", Age > 0),
+                    new("Forms", Forms.Count > 0),
+                    new("Personality", Personality.Count > 0),
+                    new("Background", Background.Length > 0),
+                    new("Notes", Notes.Length > 0)
+                ];
+            }
+        }
 
         // Basic information
         public string ProfileImage { get; set; }
@@ -23,7 +46,7 @@ namespace FurBuilder.Data
         public string Background { get; set; }
         public string Notes { get; set; }
 
-        public Character(string Owner, string Name, string Species, IList<string>? Tags = null, string ProfileImage = "", string Gender = "", int Age = 0)
+        public Character(string Owner = "", string Name = "", string Species = "", IList<string>? Tags = null, string ProfileImage = "", string Gender = "", int Age = 0)
         {
             Id = Guid.NewGuid();
             this.Owner = Owner;
