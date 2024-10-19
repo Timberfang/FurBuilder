@@ -1,4 +1,6 @@
-﻿using FurBuilder.Data;
+﻿using System.Text;
+using System.Text.Json;
+using FurBuilder.Data;
 using RadLine;
 using Spectre.Console;
 
@@ -6,6 +8,9 @@ namespace FurBuilder.CLI
 {
     internal class DataInput
     {
+        private static readonly string CharacterDirectory = Path.Join(Environment.CurrentDirectory, "Characters");
+
+        // Get a file path from the user
         internal static string GetFilePath(string Prompt)
         {
             while (true)
@@ -25,15 +30,19 @@ namespace FurBuilder.CLI
             }
         }
 
+        // Save a character to a JSON file
         internal static void SaveCharacter(string Prompt, ICharacter Data)
         {
+            // Create character directory if it doesn't exist
+            Directory.CreateDirectory(CharacterDirectory);
+
+            // Get file name and path
             while (true)
             {
                 string FileName = PromptUser<string>(Prompt);
-                string CharacterDirectory = Path.Join(Environment.CurrentDirectory, "Characters");
                 string OutputPath = Path.Join(CharacterDirectory, $"{FileName}.json");
-                Directory.CreateDirectory(CharacterDirectory);
                 
+                // Save file if it doesn't exist
                 if (Path.Exists(OutputPath))
                 {
                     Console.WriteLine();
@@ -52,11 +61,13 @@ namespace FurBuilder.CLI
             }
         }
 
+        // Get a boolean from the user
         internal static bool PromptUserYesNo(string Prompt)
         {
             return AnsiConsole.Prompt(new SelectionPrompt<string>().Title(Prompt).AddChoices(["Yes", "No"])) == "Yes";
         }
 
+        // Create a list from user input
         internal static IList<string> PromptUserForList(string Prompt, string AttributeLabel)
         {
             Console.WriteLine();
@@ -65,6 +76,7 @@ namespace FurBuilder.CLI
             return NewAttributeList(AttributeLabel);
         }
 
+        // Create a dictionary from user input
         internal static IDictionary<string, string> PromptUserForDictionary(string Prompt, string KeyLabel, string AttributeLabel)
         {
             Console.WriteLine();
@@ -73,11 +85,13 @@ namespace FurBuilder.CLI
             return NewDictionary(KeyLabel, AttributeLabel);
         }
 
+        // Get generic input from the user. Just a wrapper at the moment, but could be more later.
         internal static Type PromptUser<Type>(string Prompt)
         {
             return AnsiConsole.Prompt(new TextPrompt<Type>(Prompt));
         }
 
+        // Get a multi-line string from the user
         internal async static Task<string> PromptUserMultiLine(string Prompt)
         {
             Console.WriteLine();
@@ -89,6 +103,23 @@ namespace FurBuilder.CLI
             return await Editor.ReadLine(CancellationToken.None) ?? "";
         }
 
+        // Backend logic for list creation
+        private static List<string> NewAttributeList(string Label)
+        {
+            Console.WriteLine($"Enter one '{Label}' attribute at a time, and then press enter. When done, type 'exit', and press enter.");
+            List<string> Output = [];
+
+            while (true)
+            {
+                string UserInput = PromptUser<string>($"'{Label}' Attribute:");
+                if (UserInput == "exit") { break; }
+                else { Output.Add(UserInput); }
+            }
+
+            return Output;
+        }
+
+        // Backend logic for dictionary creation
         private static Dictionary<string, string> NewDictionary(string KeyLabel, string ValueLabel)
         {
             Dictionary<string, string> Output = [];
@@ -101,21 +132,6 @@ namespace FurBuilder.CLI
                 string Value = PromptUser<string>($"{ValueLabel}:");
                 if (Value == "exit") { break; }
                 Output.Add(Key, Value);
-            }
-
-            return Output;
-        }
-
-        private static List<string> NewAttributeList(string Label)
-        {
-            Console.WriteLine($"Enter one '{Label}' attribute at a time, and then press enter. When done, type 'exit', and press enter.");
-            List<string> Output = [];
-
-            while (true)
-            {
-                string UserInput = PromptUser<string>($"'{Label}' Attribute:");
-                if (UserInput == "exit") { break; }
-                else { Output.Add(UserInput); }
             }
 
             return Output;
