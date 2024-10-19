@@ -23,6 +23,9 @@ namespace FurBuilder.CLI
 
         public static void EditCharacter()
         {
+            // TODO: List character's current attributes in each section when selected
+            // TODO: Give option to cancel editing
+            // TODO: Give option to pick individual components of lists and dictionaries for editing.
             Console.Clear();
 
             ICharacter? WorkingCharacter = DataInput.GetCharacter("Choose a character file to edit:");

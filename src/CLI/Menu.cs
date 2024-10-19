@@ -12,6 +12,7 @@ namespace FurBuilder.CLI
             const string ListCommand = "List characters";
             const string ExitCommand = "Exit";
 
+            // TODO: Add view character command
             while (true)
             {
                 Console.Clear();
