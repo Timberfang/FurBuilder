@@ -27,7 +27,7 @@ namespace FurBuilder.CLI
             // TODO: Add editing logic; List all character files (json format), get name without suffix, pick one, deserialize to ICharacter, modify with SetAttributes.
         }
 
-        private static Character SetAttributes(Character WorkingCharacter)
+        private static ICharacter SetAttributes(ICharacter WorkingCharacter)
         {
             // TODO: Find a better way to handle this.
             Console.WriteLine("Your character's appearance is stored under 'forms'.");
