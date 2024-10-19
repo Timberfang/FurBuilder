@@ -1,6 +1,6 @@
-﻿using FurBuilder.Data;
+﻿using FurBuilder.Configuration;
+using FurBuilder.Data;
 using Spectre.Console;
-using FurBuilder.Configuration;
 
 namespace FurBuilder.CLI
 {
@@ -11,8 +11,7 @@ namespace FurBuilder.CLI
             Console.Clear();
             Console.WriteLine("Let's create a character.");
 
-            Character WorkingCharacter = new Character(Settings.Owner.Name);
-            WorkingCharacter = SetAttributes(WorkingCharacter);
+            SetAttributes(new Character(Settings.Owner.Name));
         }
 
         public static void EditCharacter(IAppSettings Settings)
@@ -90,7 +89,7 @@ namespace FurBuilder.CLI
                 }
             }
         }
-        
+
         private static IList<IAppearance> CreateAppearance(int NumberOfForms)
         {
             IList<IAppearance> Output = [];

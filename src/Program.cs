@@ -1,5 +1,5 @@
-﻿using FurBuilder.Configuration;
-using FurBuilder.CLI;
+﻿using FurBuilder.CLI;
+using FurBuilder.Configuration;
 
 namespace FurBuilder
 {

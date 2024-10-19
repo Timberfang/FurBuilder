@@ -87,7 +87,7 @@ namespace FurBuilder.CLI
             return await Editor.ReadLine(CancellationToken.None) ?? "";
         }
 
-        private static IDictionary<string, string> NewDictionary(string KeyLabel, string ValueLabel)
+        private static Dictionary<string, string> NewDictionary(string KeyLabel, string ValueLabel)
         {
             Dictionary<string, string> Output = [];
 
@@ -104,7 +104,7 @@ namespace FurBuilder.CLI
             return Output;
         }
 
-        private static IList<string> NewAttributeList(string Label)
+        private static List<string> NewAttributeList(string Label)
         {
             Console.WriteLine($"Enter one '{Label}' attribute at a time, and then press enter. When done, type 'exit', and press enter.");
             List<string> Output = [];
