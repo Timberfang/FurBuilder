@@ -20,7 +20,7 @@ namespace FurBuilder.Data
         int Age { get; set; }
 
         // Detailed information
-        IList<IAppearance> Forms { get; set; } // Allows for multiple forms (e.g. werewolves, shapeshifters, etc.)
+        IList<Appearance> Forms { get; set; } // Allows for multiple forms (e.g. werewolves, shapeshifters, etc.)
         IList<string> Personality { get; set; }
         string Background { get; set; }
         string Notes { get; set; }

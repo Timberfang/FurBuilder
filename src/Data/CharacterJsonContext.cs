@@ -5,7 +5,7 @@ namespace FurBuilder.Data
     [JsonSourceGenerationOptions(
         WriteIndented = true,
         UseStringEnumConverter = true)]
-    [JsonSerializable(typeof(ICharacter))]
+    [JsonSerializable(typeof(Character))]
     internal partial class CharacterJsonContext : JsonSerializerContext
     {
     }

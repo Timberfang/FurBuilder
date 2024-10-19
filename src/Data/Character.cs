@@ -41,7 +41,7 @@ namespace FurBuilder.Data
         public int Age { get; set; }
 
         // Detailed information
-        public IList<IAppearance> Forms { get; set; }
+        public IList<Appearance> Forms { get; set; }
         public IList<string> Personality { get; set; }
         public string Background { get; set; }
         public string Notes { get; set; }
@@ -72,7 +72,7 @@ namespace FurBuilder.Data
         }
         public string ToJson()
         {
-            return JsonSerializer.Serialize(this, CharacterJsonContext.Default.ICharacter);
+            return JsonSerializer.Serialize(this, CharacterJsonContext.Default.Character);
         }
 
         public string ToMarkdown()

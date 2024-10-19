@@ -86,9 +86,9 @@ namespace FurBuilder.CLI
             }
         }
 
-        private static IList<IAppearance> CreateAppearance(int NumberOfForms)
+        private static IList<Appearance> CreateAppearance(int NumberOfForms)
         {
-            IList<IAppearance> Output = [];
+            IList<Appearance> Output = [];
             for (int i = 1; i <= NumberOfForms; i++)
             {
                 if (NumberOfForms == 1)
@@ -120,7 +120,7 @@ namespace FurBuilder.CLI
             return Output;
         }
 
-        private static IList<IAppearance> EditAppearance(IList<IAppearance> WorkingAppearance)
+        private static IList<Appearance> EditAppearance(IList<Appearance> WorkingAppearance)
         {
             // TODO: Create editing logic
             return WorkingAppearance;
