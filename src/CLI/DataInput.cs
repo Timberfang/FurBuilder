@@ -30,6 +30,46 @@ namespace FurBuilder.CLI
             }
         }
 
+        // Retrieve a character from a JSON file
+        internal static ICharacter? GetCharacter(string Prompt)
+        {
+            if (Directory.Exists(CharacterDirectory))
+            {
+                string[] Files = Directory.GetFiles(CharacterDirectory, "*.json");
+                if (Files.Length > 0)
+                {
+                    // Convert path to name for the menu
+                    List<string> UserFriendlyFileNames = [];
+                    foreach (string File in Files) { UserFriendlyFileNames.Add(Path.GetFileNameWithoutExtension(File)); }
+
+                    // Get a character file
+                    string ChosenFile = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title(Prompt)
+                        .AddChoices(UserFriendlyFileNames));
+
+                    // Convert name back to path
+                    ChosenFile = Directory.GetFiles(CharacterDirectory, $"{ChosenFile}" + ".json").First();
+                    return JsonSerializer.Deserialize(File.ReadAllText(ChosenFile), CharacterJsonContext.Default.Character);
+                }
+                else { return null; }
+            }
+            else { return null; }
+        }
+
+        // List all character files
+        internal static string? ListCharacters()
+        {
+            string[] Files = Directory.GetFiles(CharacterDirectory, "*.json");
+            if (Files.Length > 0)
+            {
+                StringBuilder Output = new();
+                foreach (string File in Files) { Output.AppendLine(Path.GetFileNameWithoutExtension(File)); }
+                return Output.ToString();
+            }
+            else { return null; }
+        }
+
         // Save a character to a JSON file
         internal static void SaveCharacter(string Prompt, ICharacter Data)
         {

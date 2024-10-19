@@ -20,11 +20,28 @@ namespace FurBuilder.CLI
                     WorkingCharacter);
             }
         }
+
+        public static void EditCharacter()
+        {
+            Console.Clear();
+
+            ICharacter? WorkingCharacter = DataInput.GetCharacter("Choose a character file to edit:");
+            if (WorkingCharacter != null) { SetAttributes(WorkingCharacter); }
+            else
+            {
+                AnsiConsole.MarkupLine("[red]No character files found![/] Please create a character before trying to edit one.");
+            }
         }
 
-        public static void EditCharacter(IAppSettings Settings)
+        public static void ListCharacter()
         {
-            // TODO: Add editing logic; List all character files (json format), get name without suffix, pick one, deserialize to ICharacter, modify with SetAttributes.
+            Console.Clear();
+
+            AnsiConsole.MarkupLine("[blue]Character List[/]");
+            Console.WriteLine();
+            Console.WriteLine(DataInput.ListCharacters() ?? "No characters found");
+            Console.WriteLine("Press enter to return to the previous menu...");
+            Console.ReadLine();
         }
 
         private static ICharacter SetAttributes(ICharacter WorkingCharacter)

@@ -15,27 +15,26 @@ namespace FurBuilder.CLI
             while (true)
             {
                 Console.Clear();
-            string UserChoice = AnsiConsole.Prompt(
-                new SelectionPrompt<string>()
-                    .Title("Choose an option using the arrow keys, then press enter to get started.")
+                string UserChoice = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("Choose an option using the arrow keys, then press enter to get started.")
                         .AddChoices([CreateCommand, EditCommand, ListCommand, ExitCommand]));
-            switch (UserChoice)
-            {
-                case CreateCommand:
-                    // Create command here
-                    Commands.NewCharacter(Settings);
-                    break;
-                case EditCommand:
-                    // Edit command here
-                    break;
-                case ListCommand:
-                    // List command here
-                    break;
+                switch (UserChoice)
+                {
+                    case CreateCommand:
+                        Commands.NewCharacter(Settings);
+                        break;
+                    case EditCommand:
+                        Commands.EditCharacter();
+                        break;
+                    case ListCommand:
+                        Commands.ListCharacter();
+                        break;
                     case ExitCommand:
                         Environment.Exit(0);
-                    break;
+                        break;
+                }
             }
         }
     }
-}
 }
