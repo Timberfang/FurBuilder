@@ -8,6 +8,7 @@
     <PublishAot>true</PublishAot>
     <InvariantGlobalization>true</InvariantGlobalization>
 	<EnableConfigurationBindingGenerator>true</EnableConfigurationBindingGenerator>
+	<BaseOutputPath>..\artifacts</BaseOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
