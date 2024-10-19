@@ -25,13 +25,15 @@ namespace FurBuilder.CLI
             }
         }
 
-        internal static void SaveFile(string Prompt, Character Data)
+        internal static void SaveCharacter(string Prompt, ICharacter Data)
         {
             while (true)
             {
                 string FileName = PromptUser<string>(Prompt);
-                string OutputPath = Path.Join(Environment.CurrentDirectory, $"{FileName}.json");
-
+                string CharacterDirectory = Path.Join(Environment.CurrentDirectory, "Characters");
+                string OutputPath = Path.Join(CharacterDirectory, $"{FileName}.json");
+                Directory.CreateDirectory(CharacterDirectory);
+                
                 if (Path.Exists(OutputPath))
                 {
                     Console.WriteLine();

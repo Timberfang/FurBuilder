@@ -11,7 +11,7 @@ namespace FurBuilder.CLI
             Console.Clear();
             Console.WriteLine("Let's create a character.");
 
-            SetAttributes(new Character(Settings.Owner.Name));
+            DataInput.SaveCharacter("What do you want to name the character sheet file? For example, 'John Doe' would output a file called 'John Doe.json'.", SetAttributes(new Character(Settings.Owner.Name)));
         }
 
         public static void EditCharacter(IAppSettings Settings)
@@ -33,13 +33,12 @@ namespace FurBuilder.CLI
                     if (Attribute.Configured) { Choices.Add(Attribute.Name); }
                     else { Choices.Add(Attribute.Name + " (Not Set)"); }
                 }
-                Choices.Add("Save Character");
                 Choices.Add("Exit");
 
                 // Display menu
                 string UserChoice = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
-                        .Title("Choose an attribute to edit, 'Save Character' to save to a file, or 'Exit' to return to the previous menu:")
+                        .Title("Choose an attribute to edit, then choose 'Exit' when done to return to the previous menu:")
                         .AddChoices(Choices));
 
                 // Take action
@@ -80,9 +79,6 @@ namespace FurBuilder.CLI
                         break;
                     case "Notes":
                         WorkingCharacter.Notes = DataInput.PromptUser<string>("Enter the any notes you want for your character:");
-                        break;
-                    case "Save Character":
-                        DataInput.SaveFile("What do you want to name the character sheet file? For example, 'John Doe' would output a file called 'John Doe.json'.", WorkingCharacter);
                         break;
                     case "Exit":
                         return WorkingCharacter;
