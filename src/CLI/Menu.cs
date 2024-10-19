@@ -10,11 +10,15 @@ namespace FurBuilder.CLI
             const string CreateCommand = "Create character";
             const string EditCommand = "Edit character";
             const string ListCommand = "List characters";
+            const string ExitCommand = "Exit";
 
+            while (true)
+            {
+                Console.Clear();
             string UserChoice = AnsiConsole.Prompt(
                 new SelectionPrompt<string>()
                     .Title("Choose an option using the arrow keys, then press enter to get started.")
-                    .AddChoices([CreateCommand, EditCommand, ListCommand]));
+                        .AddChoices([CreateCommand, EditCommand, ListCommand, ExitCommand]));
             switch (UserChoice)
             {
                 case CreateCommand:
@@ -27,9 +31,11 @@ namespace FurBuilder.CLI
                 case ListCommand:
                     // List command here
                     break;
-                default:
+                    case ExitCommand:
+                        Environment.Exit(0);
                     break;
             }
         }
     }
+}
 }
