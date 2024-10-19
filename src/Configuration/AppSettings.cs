@@ -7,13 +7,8 @@ namespace FurBuilder.Configuration
     public class AppSettings : IAppSettings
     {
         private readonly string SettingsFilePath = Path.Join(Environment.CurrentDirectory, "appsettings.json");
-        public IOwnerData Owner { get; set; } = new OwnerData();
-        public class OwnerData : IOwnerData
-        {
-            public bool Configured { get { return Name != "" && Email != ""; } }
-            public string Name { get; set; } = "";
-            public string Email { get; set; } = "";
-        }
+        public OwnerData Owner { get; set; } = new OwnerData(); // Use OwnerData instead of IOwnerData to prevent AOT compilation warning:
+                                                                // "Cannot create instance of type 'FurBuilder.Configuration.IOwnerData' because it is missing a public instance constructor."
 
         public AppSettings()
         {

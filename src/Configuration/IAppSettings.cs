@@ -2,7 +2,7 @@
 {
     public interface IAppSettings
     {
-        public IOwnerData Owner { get; set; }
+        public OwnerData Owner { get; set; }
 
         public void Set();
     }
