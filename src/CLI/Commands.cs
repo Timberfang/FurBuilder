@@ -11,7 +11,15 @@ namespace FurBuilder.CLI
             Console.Clear();
             Console.WriteLine("Let's create a character.");
 
-            DataInput.SaveCharacter("What do you want to name the character sheet file? For example, 'John Doe' would output a file called 'John Doe.json'.", SetAttributes(new Character(Settings.Owner.Name)));
+            ICharacter WorkingCharacter = SetAttributes(new Character(Settings.Owner.Name));
+
+            if (DataInput.PromptUserYesNo("Do you want to save your character?"))
+            {
+                DataInput.SaveCharacter(
+                    "What do you want to name the character sheet file? For example, 'John Doe' would output a file called 'John Doe.json'.",
+                    WorkingCharacter);
+            }
+        }
         }
 
         public static void EditCharacter(IAppSettings Settings)
