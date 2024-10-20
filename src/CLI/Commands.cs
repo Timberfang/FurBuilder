@@ -61,6 +61,7 @@ namespace FurBuilder.CLI
                 Choices.Add("Exit");
 
                 // Display menu
+                Console.Clear();
                 string UserChoice = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("Choose an attribute to edit, then choose 'Exit' when done to return to the previous menu:")
@@ -112,7 +113,6 @@ namespace FurBuilder.CLI
                             WorkingCharacter.Personality = DataInput.PromptUserForList($"[blue]Let's give {WorkingCharacter.Name} some personality traits![/]", "Personality Trait");
                             break;
                         case "Background":
-                            if (AttributeConfigured) { Console.WriteLine(GetCurrentValue(UserChoice, WorkingCharacter.Background)); }
                             WorkingCharacter.Background = DataInput.PromptUserMultiLine("Describe your character's backstory:").Result;
                             break;
                         case "Notes":
