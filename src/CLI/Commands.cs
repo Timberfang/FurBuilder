@@ -30,10 +30,7 @@ namespace FurBuilder.CLI
 
             ICharacter? WorkingCharacter = DataInput.GetCharacter("Choose a character file to edit:");
             if (WorkingCharacter != null) { SetAttributes(WorkingCharacter); }
-            else
-            {
-                AnsiConsole.MarkupLine("[red]No character files found![/] Please create a character before trying to edit one.");
-            }
+            else { AnsiConsole.MarkupLine("[red]No character files found![/] Please create a character before trying to edit one."); }
         }
 
         public static void ListCharacter()
