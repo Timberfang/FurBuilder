@@ -69,47 +69,60 @@ namespace FurBuilder.CLI
                         .Title("Choose an attribute to edit, then choose 'Exit' when done to return to the previous menu:")
                         .AddChoices(Choices));
 
-                // Take action
-                switch (UserChoice.Replace(" (Not Set)", ""))
+                // If user exits, no data preparation required
+                if (UserChoice == "Exit") { return WorkingCharacter; }
+                else
                 {
-                    case "Profile Image":
-                        WorkingCharacter.ProfileImage = DataInput.GetFilePath("Enter the path to your profile picture file:");
-                        break;
-                    case "Name":
-                        WorkingCharacter.Name = DataInput.PromptUser<string>("Enter your character's name:");
-                        break;
-                    case "Species":
-                        WorkingCharacter.Species = DataInput.PromptUser<string>("Enter your character's species:");
-                        break;
-                    case "Gender":
-                        WorkingCharacter.Gender = DataInput.PromptUser<string>("Enter your character's gender:");
-                        break;
-                    case "Age":
-                        WorkingCharacter.Age = DataInput.PromptUser<int>("Enter your character's age, in years. Enter only a number:");
-                        break;
-                    case "Forms":
-                        if (WorkingCharacter.Forms.Count == 0)
-                        {
-                            int NumberOfForms = 1;
-                            if (DataInput.PromptUserYesNo("Is your character a shapeshifter of some kind? That is, do they have more than one form?"))
+                    // Get whether attribute is configured
+                    bool AttributeConfigured = !UserChoice.Contains("Not Set");
+
+                    // Take action
+                    switch (UserChoice.Replace(" (Not Set)", ""))
+                    {
+                        case "Profile Image":
+                            if (AttributeConfigured) { WorkingCharacter.ProfileImage = DataInput.PromptUser<string>("Enter your character's name:", WorkingCharacter.ProfileImage); }
+                            else { WorkingCharacter.ProfileImage = DataInput.GetFilePath("Enter the path to your profile picture file:"); }
+                            break;
+                        case "Name":
+                            if (AttributeConfigured) { WorkingCharacter.Name = DataInput.PromptUser<string>("Enter your character's name:", WorkingCharacter.Name); }
+                            else { WorkingCharacter.Name = DataInput.PromptUser<string>("Enter your character's name:"); }
+                            break;
+                        case "Species":
+                            if (AttributeConfigured) { WorkingCharacter.Species = DataInput.PromptUser<string>("Enter your character's species:", WorkingCharacter.Species); }
+                            else { WorkingCharacter.Species = DataInput.PromptUser<string>("Enter your character's species:"); }
+                            break;
+                        case "Gender":
+                            if (AttributeConfigured) { WorkingCharacter.Gender = DataInput.PromptUser<string>("Enter your character's gender:", WorkingCharacter.Gender); }
+                            else { WorkingCharacter.Gender = DataInput.PromptUser<string>("Enter your character's gender:"); }
+                            break;
+                        case "Age":
+                            if (AttributeConfigured) { WorkingCharacter.Age = DataInput.PromptUser<int>("Enter your character's gender:", WorkingCharacter.Age); }
+                            else { WorkingCharacter.Age = DataInput.PromptUser<int>("Enter your character's age, in years. Enter only a number:"); }
+                            break;
+                        case "Forms":
+                            if (WorkingCharacter.Forms.Count == 0)
                             {
-                                NumberOfForms = DataInput.PromptUser<int>("How many forms does your character have? Enter only a number:");
+                                int NumberOfForms = 1;
+                                if (DataInput.PromptUserYesNo("Is your character a shapeshifter of some kind? That is, do they have more than one form?"))
+                                {
+                                    NumberOfForms = DataInput.PromptUser<int>("How many forms does your character have? Enter only a number:");
+                                }
+                                WorkingCharacter.Forms = CreateAppearance(NumberOfForms);
                             }
-                            WorkingCharacter.Forms = CreateAppearance(NumberOfForms);
-                        }
-                        else { EditAppearance(WorkingCharacter.Forms); }
-                        break;
-                    case "Personality":
-                        WorkingCharacter.Personality = DataInput.PromptUserForList($"[blue]Let's give {WorkingCharacter.Name} some personality traits![/]", "Personality Trait");
-                        break;
-                    case "Background":
-                        WorkingCharacter.Background = DataInput.PromptUserMultiLine("Describe your character's backstory:").Result;
-                        break;
-                    case "Notes":
-                        WorkingCharacter.Notes = DataInput.PromptUser<string>("Enter the any notes you want for your character:");
-                        break;
-                    case "Exit":
-                        return WorkingCharacter;
+                            else { EditAppearance(WorkingCharacter.Forms); }
+                            break;
+                        case "Personality":
+                            WorkingCharacter.Personality = DataInput.PromptUserForList($"[blue]Let's give {WorkingCharacter.Name} some personality traits![/]", "Personality Trait");
+                            break;
+                        case "Background":
+                            if (AttributeConfigured) { Console.WriteLine(GetCurrentValue(UserChoice, WorkingCharacter.Background)); }
+                            WorkingCharacter.Background = DataInput.PromptUserMultiLine("Describe your character's backstory:").Result;
+                            break;
+                        case "Notes":
+                            if (AttributeConfigured) { WorkingCharacter.Notes = DataInput.PromptUser<string>("Enter your character's gender:", WorkingCharacter.Notes); }
+                            else { WorkingCharacter.Notes = DataInput.PromptUser<string>("Enter the any notes you want for your character:"); }
+                            break;
+                    }
                 }
             }
         }

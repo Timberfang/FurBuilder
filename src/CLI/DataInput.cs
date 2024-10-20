@@ -130,6 +130,12 @@ namespace FurBuilder.CLI
         {
             return AnsiConsole.Prompt(new TextPrompt<Type>(Prompt));
         }
+        internal static Type PromptUser<Type>(string Prompt, Type CurrentValue)
+        {
+            Console.WriteLine("Press enter with an empty prompt to retain the existing value (shown in parentheses)");
+            Console.WriteLine();
+            return AnsiConsole.Prompt(new TextPrompt<Type>(Prompt).DefaultValue(CurrentValue));
+        }
 
         // Get a multi-line string from the user
         internal async static Task<string> PromptUserMultiLine(string Prompt)
