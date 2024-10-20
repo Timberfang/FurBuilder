@@ -31,10 +31,11 @@ namespace FurBuilder.CLI.Interactive
 			const string ListCommand = "List characters";
 			const string ExitCommand = "Exit";
 
-			while (true)
+			string UserChoice;
+			do
 			{
 				Console.Clear();
-				string UserChoice = AnsiConsole.Prompt(
+				UserChoice = AnsiConsole.Prompt(
 					new SelectionPrompt<string>()
 						.Title("Choose an option using the arrow keys, then press enter to get started.")
 						.AddChoices([CreateCommand, EditCommand, ListCommand, ExitCommand]));
@@ -50,7 +51,7 @@ namespace FurBuilder.CLI.Interactive
 						Environment.Exit(0);
 						break;
 				}
-			}
+			} while (UserChoice != ExitCommand);
 		}
 	}
 }
