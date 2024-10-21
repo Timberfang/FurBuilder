@@ -6,6 +6,29 @@ namespace FurBuilder.CLI.Interactive
 {
 	internal static class InteractiveMenu
 	{
+		// Set of all valid menu options
+		private enum MenuOption
+		{
+			CreateCharacter,
+			ViewCharacter,
+			EditCharacter,
+			ListCharacters,
+			DeleteCharacter,
+			Exit
+		}
+
+		// Used for displaying to the user; Combines above with user-friendly labels
+		private static readonly Dictionary<string, MenuOption> MenuOptionDict = new()
+		{
+			{ "Create Character", MenuOption.CreateCharacter },
+			{ "View Character", MenuOption.ViewCharacter },
+			{ "Edit Character", MenuOption.EditCharacter },
+			{ "List Characters", MenuOption.ListCharacters },
+			{ "Delete Character", MenuOption.DeleteCharacter },
+			{ "Exit", MenuOption.Exit }
+		};
+
+		// Load or create relevant configuration data
 		internal static void InteractiveStart(IAppSettings Settings)
 		{
 			if (Settings.Owner.Configured)
@@ -24,34 +47,37 @@ namespace FurBuilder.CLI.Interactive
 				ShowMainMenu(Settings);
 			}
 		}
+
+		// Display main menu
 		private static void ShowMainMenu(IAppSettings Settings)
 		{
-			const string CreateCommand = "Create character";
-			const string EditCommand = "Edit character";
-			const string ListCommand = "List characters";
-			const string ExitCommand = "Exit";
+			MenuOption SelectedOption;
 
-			string UserChoice;
 			do
 			{
-				Console.Clear();
-				UserChoice = AnsiConsole.Prompt(
-					new SelectionPrompt<string>()
-						.Title("Choose an option using the arrow keys, then press enter to get started.")
-						.AddChoices([CreateCommand, EditCommand, ListCommand, ExitCommand]));
-				switch (UserChoice)
+				SelectedOption = MenuOptionDict[AnsiConsole.Prompt(new SelectionPrompt<string>()
+					.Title("Choose an option using the arrow keys, then press enter.")
+					.AddChoices(MenuOptionDict.Keys))];
+
+				switch (SelectedOption)
 				{
-					case CreateCommand:
+					case MenuOption.CreateCharacter:
 						throw new NotImplementedException();
-					case EditCommand:
+					case MenuOption.ViewCharacter:
 						throw new NotImplementedException();
-					case ListCommand:
+					case MenuOption.EditCharacter:
 						throw new NotImplementedException();
-					case ExitCommand:
+					case MenuOption.ListCharacters:
+						throw new NotImplementedException();
+					case MenuOption.DeleteCharacter:
+						throw new NotImplementedException();
+					case MenuOption.Exit:
 						Environment.Exit(0);
 						break;
-				}
-			} while (UserChoice != ExitCommand);
+					default:
+						throw new ArgumentOutOfRangeException($"Unrecognized menu option {SelectedOption}");
+				};
+			} while (SelectedOption != MenuOption.Exit);
 		}
 	}
 }
