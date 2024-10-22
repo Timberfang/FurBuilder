@@ -1,6 +1,6 @@
 ﻿namespace FurBuilder.Configuration
 {
-	public record OwnerData
+	public record OwnerData : IOwnerData
 	{
 		public bool Configured { get { return Name != "" && Email != ""; } }
 		public string Name { get; set; } = "";
