@@ -90,7 +90,7 @@ namespace FurBuilder.Models
 
 		private static string ToStringOrDefault(string Property, string Default)
 		{
-			if (Property != Default) { return Property.ToString() ?? "Not Set"; }
+			if (Property != Default) { return Property.ToString(); }
 			else { return "Not Set"; }
 		}
 		
