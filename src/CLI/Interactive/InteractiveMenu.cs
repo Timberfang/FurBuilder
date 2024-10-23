@@ -1,5 +1,6 @@
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using FurBuilder.Configuration;
+using FurBuilder.Models;
 using Spectre.Console;
 
 namespace FurBuilder.CLI.Interactive
@@ -26,6 +27,30 @@ namespace FurBuilder.CLI.Interactive
 			{ MenuOption.ListCharacters, "List Characters" },
 			{ MenuOption.DeleteCharacter, "Delete Character" },
 			{ MenuOption.Exit, "Exit" }
+		};
+
+		private enum CreateOption
+		{
+			Name,
+			Species,
+			Gender,
+			Age,
+			Appearance,
+			Personality,
+			Backstory,
+			Exit
+		}
+
+		private static readonly Dictionary<CreateOption, string> CreateOptionDict = new()
+		{
+			{ CreateOption.Name, "Name" },
+			{ CreateOption.Species, "Species" },
+			{ CreateOption.Gender, "Gender" },
+			{ CreateOption.Age, "Age" },
+			{ CreateOption.Appearance, "Appearance" },
+			{ CreateOption.Personality, "Personality" },
+			{ CreateOption.Backstory, "Backstory" },
+			{ CreateOption.Exit, "Exit" }
 		};
 
 		// Load or create relevant configuration data
@@ -65,7 +90,8 @@ namespace FurBuilder.CLI.Interactive
 				switch (SelectedOption)
 				{
 					case MenuOption.CreateCharacter:
-						throw new NotImplementedException();
+						CreateCharacter(Settings.Owner);
+						break;
 					case MenuOption.ViewCharacter:
 						throw new NotImplementedException();
 					case MenuOption.EditCharacter:
@@ -81,6 +107,55 @@ namespace FurBuilder.CLI.Interactive
 						throw new ArgumentOutOfRangeException($"Unrecognized menu option {SelectedOption}");
 				};
 			} while (SelectedOption != MenuOption.Exit);
+		}
+
+		private static ICharacter CreateCharacter(IOwnerData Data)
+		{
+			CreateOption SelectedOption;
+			ICharacter NewCharacter = new Character(Data);
+
+			do
+			{
+				AnsiConsole.Clear();
+				AnsiConsole.MarkupLine(NewCharacter.ToString());
+				SelectedOption = AnsiConsole.Prompt(
+					new SelectionPrompt<CreateOption>()
+						.UseConverter(Choice => CreateOptionDict[Choice])
+						.AddChoices(CreateOptionDict.Keys)
+						.Title("Choose an option using the arrow keys, then press enter."));
+
+				switch (SelectedOption)
+				{
+					case CreateOption.Name:
+						NewCharacter.BasicInfo.Name = UserPrompt.GetCharacterTrait<string>("Name");
+						break;
+					case CreateOption.Species:
+						NewCharacter.BasicInfo.Species = UserPrompt.GetCharacterTrait<string>("Species");
+						break;
+					case CreateOption.Gender:
+						NewCharacter.BasicInfo.Gender = UserPrompt.GetCharacterTrait<string>("Gender");
+						break;
+					case CreateOption.Age:
+						NewCharacter.BasicInfo.Age = UserPrompt.GetCharacterTrait<int>("Age");
+						break;
+					case CreateOption.Appearance:
+						// TODO: Appearance creation logic
+						break;
+					case CreateOption.Personality:
+						// TODO: Personality creation logic
+						break;
+					case CreateOption.Backstory:
+						// TODO: Backstory creation logic
+						break; 
+					case CreateOption.Exit:
+						Environment.Exit(0);
+						break;
+					default:
+						throw new ArgumentOutOfRangeException($"Unrecognized menu option {SelectedOption}");
+				};
+			} while (SelectedOption != CreateOption.Exit);
+
+			return NewCharacter;
 		}
 	}
 }
