@@ -1,4 +1,4 @@
-﻿using System.Net.Mail;
+using System.Net.Mail;
 using FurBuilder.Configuration;
 using Spectre.Console;
 
@@ -18,14 +18,14 @@ namespace FurBuilder.CLI.Interactive
 		}
 
 		// Used for displaying to the user; Combines above with user-friendly labels
-		private static readonly Dictionary<string, MenuOption> MenuOptionDict = new()
+		private static readonly Dictionary<MenuOption, string> MenuOptionDict = new()
 		{
-			{ "Create Character", MenuOption.CreateCharacter },
-			{ "View Character", MenuOption.ViewCharacter },
-			{ "Edit Character", MenuOption.EditCharacter },
-			{ "List Characters", MenuOption.ListCharacters },
-			{ "Delete Character", MenuOption.DeleteCharacter },
-			{ "Exit", MenuOption.Exit }
+			{ MenuOption.CreateCharacter, "Create Character" },
+			{ MenuOption.ViewCharacter, "View Character" },
+			{ MenuOption.EditCharacter, "Edit Character" },
+			{ MenuOption.ListCharacters, "List Characters" },
+			{ MenuOption.DeleteCharacter, "Delete Character" },
+			{ MenuOption.Exit, "Exit" }
 		};
 
 		// Load or create relevant configuration data
@@ -55,9 +55,12 @@ namespace FurBuilder.CLI.Interactive
 
 			do
 			{
-				SelectedOption = MenuOptionDict[AnsiConsole.Prompt(new SelectionPrompt<string>()
-					.Title("Choose an option using the arrow keys, then press enter.")
-					.AddChoices(MenuOptionDict.Keys))];
+				SelectedOption = AnsiConsole.Prompt(
+					new SelectionPrompt<MenuOption>()
+						.UseConverter(Choice => MenuOptionDict[Choice])
+						.AddChoices(MenuOptionDict.Keys)
+						.Title("Choose an option using the arrow keys, then press enter.")
+				);
 
 				switch (SelectedOption)
 				{
