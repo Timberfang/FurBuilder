@@ -19,13 +19,7 @@ namespace FurBuilder.CLI.Interactive
 				{
 					AnsiConsole.WriteLine($"{TraitName} List:");
 					if (Output.Count == 0) { AnsiConsole.WriteLine("- (Empty)"); }
-					else
-					{
-						foreach (string ListItem in Output)
-						{
-							AnsiConsole.WriteLine($"- {ListItem}");
-						}
-					}
+					else { foreach (string ListItem in Output) { AnsiConsole.WriteLine($"- {ListItem}"); } }
 					AnsiConsole.WriteLine();
 				}
 
