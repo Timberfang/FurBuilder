@@ -1,6 +1,4 @@
-﻿using System.Collections;
-
-namespace FurBuilder.Models.Character;
+﻿namespace FurBuilder.Models.Character;
 
 internal interface IPhysicalAttributes
 {

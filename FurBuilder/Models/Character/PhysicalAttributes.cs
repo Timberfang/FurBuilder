@@ -23,11 +23,11 @@ internal class PhysicalAttributes(
 		output.AppendLine($"Height: {Height}");
 		output.AppendLine($"Weight: {Weight}");
 		output.AppendLine($"Build: {Build}");
-		output.AppendLine($"Colors:");
+		output.AppendLine("Colors:");
 		output.Append(string.Join(", ", Colors));
-		output.AppendLine($"Features:");
+		output.AppendLine("Features:");
 		output.Append(string.Join(", ", Features));
-		output.AppendLine($"Clothes:");
+		output.AppendLine("Clothes:");
 		output.Append(string.Join(", ", Clothes));
 		return output.ToString();
 	}

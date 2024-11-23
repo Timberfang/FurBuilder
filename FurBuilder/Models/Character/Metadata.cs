@@ -6,5 +6,8 @@ internal class Metadata(string owner = "") : IMetadata
 	public Guid Guid { get; } = Guid.NewGuid();
 	public DateTime DateCreated { get; set; } = DateTime.Now;
 
-	public override string? ToString() => $"Owner: {Owner}, DateCreated: {DateCreated}";
+	public override string? ToString()
+	{
+		return $"Owner: {Owner}, DateCreated: {DateCreated}";
+	}
 }

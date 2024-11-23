@@ -6,6 +6,9 @@ public class BasicAttributes(string name = "", string species = "", string gende
 	public string Species { get; set; } = species;
 	public string Gender { get; set; } = gender;
 	public int Age { get; set; } = age;
-	
-	public override string ToString() => $"{Name} ({Species}, {Gender}, {Age})";
+
+	public override string ToString()
+	{
+		return $"{Name} ({Species}, {Gender}, {Age})";
+	}
 }
