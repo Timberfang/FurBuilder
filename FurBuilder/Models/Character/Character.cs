@@ -32,7 +32,7 @@ internal class Character(
 		output.AppendLine(PhysicalAttributes.ToString());
 		output.AppendLine();
 		output.AppendLine();
-		output.AppendLine("Mental ATTRIBUTES");
+		output.AppendLine("MENTAL ATTRIBUTES");
 		output.AppendLine();
 		output.AppendLine(MentalAttributes.ToString());
 		return output.ToString();

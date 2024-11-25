@@ -44,12 +44,12 @@ internal class PhysicalAttributes : IPhysicalAttributes
 		output.AppendLine($"Height: {(Height > 0 ? Height : "Unknown")}");
 		output.AppendLine($"Weight: {(Weight > 0 ? Weight : "Unknown")}");
 		output.AppendLine($"Build: {(Build != "" ? Build : "Unknown")}");
-		output.AppendLine("Colors: ");
-		output.Append(Colors.Count > 0 ? string.Join(", ", Colors) : "None");
-		output.AppendLine("Features: ");
-		output.Append(Features.Count > 0 ? string.Join(", ", Features) : "None");
-		output.AppendLine("Clothes: ");
-		output.Append(Clothes.Count > 0 ? string.Join(", ", Clothes) : "None");
+		output.Append("Colors: ");
+		output.AppendLine(Colors.Count > 0 ? string.Join(", ", Colors) : "None");
+		output.Append("Features: ");
+		output.AppendLine(Features.Count > 0 ? string.Join(", ", Features) : "None");
+		output.Append("Clothes: ");
+		output.AppendLine(Clothes.Count > 0 ? string.Join(", ", Clothes) : "None");
 		return output.ToString();
 	}
 }

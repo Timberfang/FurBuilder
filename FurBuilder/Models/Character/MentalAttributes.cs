@@ -16,12 +16,12 @@ internal class MentalAttributes(
 	public override string ToString()
 	{
 		StringBuilder output = new();
-		output.AppendLine("Traits:");
-		output.Append(string.Join(", ", Traits));
-		output.AppendLine("Likes:");
-		output.Append(string.Join(", ", Likes));
-		output.AppendLine("Dislikes:");
-		output.Append(string.Join(", ", Dislikes));
+		output.Append("Traits:");
+		output.AppendLine(Traits.Count > 0 ? string.Join(", ", Traits) : "None");
+		output.Append("Likes:");
+		output.AppendLine(Likes.Count > 0 ? string.Join(", ", Likes) : "None");
+		output.Append("Dislikes:");
+		output.AppendLine(Dislikes.Count > 0 ? string.Join(", ", Dislikes) : "None");
 		output.AppendLine($"Backstory: {Backstory}");
 		return output.ToString();
 	}

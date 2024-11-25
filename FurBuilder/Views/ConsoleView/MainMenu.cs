@@ -32,6 +32,7 @@ internal static class MainMenu
 
 		Character currentCharacter = new(characterMetadata, characterAttributes);
 		Console.WriteLine("Here's your character so far:");
+		Console.WriteLine();
 		Console.Write(currentCharacter.ToString());
 
 		if (AnsiConsole.Prompt(new ConfirmationPrompt("Would you like to continue filling out this character? (This isn't implemented yet!)")))
