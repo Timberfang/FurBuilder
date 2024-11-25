@@ -14,7 +14,7 @@ internal class Character(
 	public IPhysicalAttributes PhysicalAttributes { get; set; } = physicalAttributes ?? new PhysicalAttributes();
 	public IMentalAttributes MentalAttributes { get; set; } = mentalAttributes ?? new MentalAttributes();
 
-	public string ToString(bool singleLine = false)
+	public override string ToString()
 	{
 		StringBuilder output = new();
 		output.AppendLine("METADATA");

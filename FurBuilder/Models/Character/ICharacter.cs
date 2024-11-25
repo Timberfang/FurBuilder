@@ -7,7 +7,7 @@ internal interface ICharacter
 	internal IPhysicalAttributes PhysicalAttributes { get; set; }
 	internal IMentalAttributes MentalAttributes { get; set; }
 
-	internal string ToString(bool singleLine = false);
+	internal string ToString();
 	internal string ToMarkdown();
 	internal string ToJson();
 }
