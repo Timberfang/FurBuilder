@@ -5,12 +5,13 @@ namespace FurBuilder.Models.Character;
 internal class PhysicalAttributes : IPhysicalAttributes
 {
 	private float _height;
+	private float _weight;
+
 	public float Height
 	{
 		get => _height;
 		set => _height = value >= 0 ? value : throw new ArgumentOutOfRangeException(nameof(Height), "Height cannot be negative.");
 	}
-	private float _weight;
 	public float Weight
 	{
 		get => _weight;
