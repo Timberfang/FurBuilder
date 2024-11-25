@@ -1,4 +1,6 @@
-﻿namespace FurBuilder.Models.Character;
+﻿using System.Text;
+
+namespace FurBuilder.Models.Character;
 
 internal class Character(
 	IMetadata? metadata = null,
@@ -14,7 +16,26 @@ internal class Character(
 
 	public string ToString(bool singleLine = false)
 	{
-		throw new NotImplementedException();
+		StringBuilder output = new();
+		output.AppendLine("METADATA");
+		output.AppendLine();
+		output.AppendLine(Metadata.ToString());
+		output.AppendLine();
+		output.AppendLine();
+		output.AppendLine("BASIC ATTRIBUTES");
+		output.AppendLine();
+		output.AppendLine(BasicAttributes.ToString());
+		output.AppendLine();
+		output.AppendLine();
+		output.AppendLine("PHYSICAL ATTRIBUTES");
+		output.AppendLine();
+		output.AppendLine(PhysicalAttributes.ToString());
+		output.AppendLine();
+		output.AppendLine();
+		output.AppendLine("Mental ATTRIBUTES");
+		output.AppendLine();
+		output.AppendLine(MentalAttributes.ToString());
+		return output.ToString();
 	}
 
 	public string ToMarkdown()
