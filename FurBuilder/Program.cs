@@ -1,4 +1,4 @@
-﻿using FurBuilder.Views.ConsoleView;
+using FurBuilder.Views.ConsoleView;
 
 namespace FurBuilder;
 

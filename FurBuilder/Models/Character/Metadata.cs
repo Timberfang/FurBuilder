@@ -1,4 +1,4 @@
-﻿namespace FurBuilder.Models.Character;
+namespace FurBuilder.Models.Character;
 
 internal class Metadata(string owner = "") : IMetadata
 {

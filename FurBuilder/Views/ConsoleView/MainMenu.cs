@@ -1,4 +1,4 @@
-﻿using FurBuilder.Models.Character;
+using FurBuilder.Models.Character;
 
 using Spectre.Console;
 

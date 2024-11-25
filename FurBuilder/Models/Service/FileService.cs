@@ -1,4 +1,4 @@
-﻿namespace FurBuilder.Models.Service;
+namespace FurBuilder.Models.Service;
 
 internal static class FileService
 {
