@@ -18,7 +18,7 @@ internal class PhysicalAttributes : IPhysicalAttributes
 		set => _weight = value >= 0 ? value : throw new ArgumentOutOfRangeException(nameof(Weight), "Weight cannot be negative.");
 	}
 	public string Build { get; set; }
-	public IList<Color> Colors { get; set; }
+	public IList<ColorRegion> Colors { get; set; }
 	public IList<string> Features { get; set; }
 	public IList<string> Clothes { get; set; }
 
@@ -26,14 +26,14 @@ internal class PhysicalAttributes : IPhysicalAttributes
 		float height = 0,
 		float weight = 0,
 		string build = "",
-		IList<Color>? colors = null,
+		IList<ColorRegion>? colors = null,
 		IList<string>? features = null,
 		IList<string>? clothes = null)
 	{
 		Height = height;
 		Weight = weight;
 		Build = build;
-		Colors = colors ?? new List<Color>();
+		Colors = colors ?? new List<ColorRegion>();
 		Features = features ?? new List<string>();
 		Clothes = clothes ?? new List<string>();
 	}
