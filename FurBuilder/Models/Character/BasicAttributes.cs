@@ -1,6 +1,6 @@
 namespace FurBuilder.Models.Character;
 
-public class BasicAttributes(string name = "", string species = "", string gender = "", int age = 0) : IBasicAttributes
+internal class BasicAttributes(string name = "", string species = "", string gender = "", int age = 0) : IBasicAttributes
 {
 	private int _age = age;
 
