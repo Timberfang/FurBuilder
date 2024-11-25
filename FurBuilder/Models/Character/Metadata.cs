@@ -8,6 +8,6 @@ internal class Metadata(string owner = "") : IMetadata
 
 	public override string? ToString()
 	{
-		return $"Owner: {Owner}, DateCreated: {DateCreated}";
+		return $"Owner: {(Owner != "" ? Owner : "Unknown")}, DateCreated: {DateCreated}";
 	}
 }
