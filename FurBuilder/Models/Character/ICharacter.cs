@@ -8,6 +8,7 @@ internal interface ICharacter
 	internal IMentalAttributes MentalAttributes { get; set; }
 
 	internal string ToString();
+	internal string ToMarkup();
 	internal string ToMarkdown();
 	internal string ToJson();
 }

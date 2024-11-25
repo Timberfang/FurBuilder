@@ -38,6 +38,30 @@ internal class Character(
 		return output.ToString();
 	}
 
+	public string ToMarkup()
+	{
+		StringBuilder output = new();
+		output.AppendLine("[blue]METADATA[/]");
+		output.AppendLine();
+		output.AppendLine(Metadata.ToString());
+		output.AppendLine();
+		output.AppendLine();
+		output.AppendLine("[blue]BASIC ATTRIBUTES[/]");
+		output.AppendLine();
+		output.AppendLine(BasicAttributes.ToString());
+		output.AppendLine();
+		output.AppendLine();
+		output.AppendLine("[blue]PHYSICAL ATTRIBUTES[/]");
+		output.AppendLine();
+		output.AppendLine(PhysicalAttributes.ToString());
+		output.AppendLine();
+		output.AppendLine();
+		output.AppendLine("[blue]MENTAL ATTRIBUTES[/]");
+		output.AppendLine();
+		output.AppendLine(MentalAttributes.ToString());
+		return output.ToString();
+	}
+
 	public string ToMarkdown()
 	{
 		throw new NotImplementedException();
